@@ -323,13 +323,21 @@ document.querySelectorAll("<span class="red">.orbitSlider</span>").forEach(slide
             <pre class="tabPanel is-active" data-panel="js"><code>
 document.querySelectorAll("<span class="red">.demoSlider2</span>").forEach((slider) => {
   createorbitSlider(slider, {
-    visibleCount: <span class="yellow">2</span>,
+    visibleCount: <span class="yellow">2.5</span>,
+    orbitItemWidth: <span class="yellow">"250px"</span>,
     autoMode: <span class="yellow">"step"</span>,
     stepDuration: <span class="yellow">1</span>,
     stepDelay: <span class="yellow">0.5</span>,
     draggable: <span class="yellow">false</span>,
     sliderHeight: <span class="yellow">"500px"</span>,
     pathTop: <span class="yellow">"50px"</span>,
+    overflowBuffer: <span class="yellow">25</span>,
+    responsive: <span class="yellow">{
+      700: {
+        sliderHeight: "65vw",
+        orbitItemWidth: "35%",
+      }</span>,
+    },
   });
 });
             </code></pre>
