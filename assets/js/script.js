@@ -22,7 +22,10 @@ document.querySelectorAll(".heroSlider").forEach((slider) => {
     sliderHeight: "55vw",
     orbitItemWidth: "13vw",
     visibleCount: 7,
-    alignOrigin: { x: 0.5, y: 0.04 },
+    alignOrigin: {
+      x: 0.5,
+      y: 0.04
+    },
     autoRotate: false,
     autoSpeed: 40,
     overflowBuffer: 20,
@@ -66,13 +69,21 @@ document.querySelectorAll(".demoSlider1").forEach((slider) => {
 // デモスライダー2
 document.querySelectorAll(".demoSlider2").forEach((slider) => {
   createorbitSlider(slider, {
-    visibleCount: 2,
+    visibleCount: 2.5,
+    orbitItemWidth: "250px",
     autoMode: "step",
     stepDuration: 1,
     stepDelay: 0.5,
     draggable: false,
     sliderHeight: "500px",
     pathTop: "50px",
+    overflowBuffer: 25,
+    responsive: {
+      700: {
+        sliderHeight: "65vw",
+        orbitItemWidth: "35%",
+      },
+    },
   });
 });
 
