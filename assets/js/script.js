@@ -58,7 +58,6 @@ document.querySelectorAll(".demoSlider1").forEach((slider) => {
     responsive: {
       700: {
         sliderHeight: "65vw",
-        visibleCount: 3,
       },
     },
   });
