@@ -108,7 +108,7 @@ select {
     color: var(--sub-color);
 }
 .btn.btn2:hover{
-    background-color: var(--sub-color);
-    color: var(--accent-color);
+    background-color: var(--main-color-dark);
+    color: var(--sub-color);
 }
 
