@@ -30,6 +30,13 @@ document.querySelectorAll(".heroSlider").forEach((slider) => {
     autoSpeed: 40,
     overflowBuffer: 20,
     pathDirection: "reverse",
+    responsive: {
+      700: {
+        orbitItemWidth: "23vw",
+        sliderHeight: "65vw",
+        visibleCount: 5,
+      },
+    },
   });
 });
 document.querySelectorAll(".heroSliderNumber").forEach((el, i) => {
