@@ -657,6 +657,11 @@ main {
   font-size: 0.9rem;
   font-weight: bold;
 }
+@media (max-width: 768px) {
+  .generatorLead {
+    display: none;
+  }
+}
 
 .generatorLead .btn {
   font-size: 1rem;
