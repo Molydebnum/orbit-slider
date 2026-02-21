@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lilita+One&family=Noto+Sans+JP:wght@100..900&display=swap");
+
 :root {
   --mainLogoSize: clamp(3rem, 6vw, 6rem);
 }
+
 :root {
   --main-color: #ffd400;
   --main-color-dark: #a38707;
@@ -12,9 +14,11 @@
   --demoWidth: min(90%, 700px);
   --paddindMax5: max(calc((100% - 1300px) / 2), 5%);
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 .LilitaOne {
   font-family: "Lilita One";
   letter-spacing: 0.06em;
@@ -24,9 +28,11 @@ html {
 .mainHeader {
   transition: all 0.5s;
 }
+
 .mainHeader.hide {
   opacity: 0;
 }
+
 .mainLogo {
   position: fixed;
   top: 10vh;
@@ -45,6 +51,7 @@ html {
   transform: scale(0.5);
   translate: 0;
 }
+
 .mainNav {
   position: fixed;
   bottom: 20px;
@@ -52,14 +59,17 @@ html {
   text-align: right;
   z-index: 1000000;
 }
+
 .mainNav ul {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
+
 .mainNav a {
   display: block;
 }
+
 .navButton {
   padding: 0.5em 1.5em;
 }
@@ -68,7 +78,8 @@ html {
 .mainFooter {
   background-color: var(--sub-color);
   color: var(--accent-color);
-  padding: 80px 0 0; /* 下はfooterBottomがあるため0 */
+  padding: 80px 0 0;
+  /* 下はfooterBottomがあるため0 */
   margin-top: 100px;
 }
 
@@ -158,7 +169,8 @@ html {
 }
 
 .footerBottom {
-  background-color: #111; /* サブカラーより少しだけ深い黒 */
+  background-color: #111;
+  /* サブカラーより少しだけ深い黒 */
   padding: 30px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -176,7 +188,7 @@ html {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .footerNav {
     justify-content: center;
   }
@@ -187,7 +199,8 @@ html {
   }
 
   .footerNavList a:hover {
-    transform: none; /* スマホでは横移動なし */
+    transform: none;
+    /* スマホでは横移動なし */
   }
 }
 
@@ -195,6 +208,7 @@ main {
   position: relative;
   padding: calc(20rem - 18vw) 0 0;
 }
+
 .mainCopy {
   position: absolute;
   top: calc(10vh + (var(--mainLogoSize)));
@@ -206,18 +220,22 @@ main {
 .hero {
   padding-bottom: 100px;
 }
+
 .heroSliderPath {
   stroke-width: 3;
 }
+
 .heroSliderItem {
   aspect-ratio: 37/52;
 }
+
 .heroSliderItem .itemInner {
   background: url(../svg/heroSliderItem.svg) center / contain no-repeat;
   width: 100%;
   height: 100%;
   transform-origin: center 0%;
 }
+
 .heroSliderNumber {
   position: absolute;
   top: 50%;
@@ -228,14 +246,24 @@ main {
   color: var(--accent-color);
   -webkit-text-stroke: 0.25vw #000;
 }
+@media (max-width:700px) {
+  .heroSliderNumber {
+    font-size: 18vw;
+    -webkit-text-stroke: 0.5vw #000;
+  }
+  
+}
+
 .heroSliderItem:hover .itemInner {
   animation: yura 0.3s infinite alternate;
 }
+
 @keyframes yura {
   50% {
     rotate: 2deg;
   }
 }
+
 .heroSliderItem:hover .heroSliderNumber {
   color: var(--accent-color);
 }
@@ -251,19 +279,22 @@ main {
   border: 10px solid #000;
   background: #eee;
 }
+
 .demoSlider1Path {
   stroke-width: 3;
 }
+
 .demoSlider1Item img {
   width: 100%;
 }
 
 /* デモスライダー2 */
-.demoSlider2Item img{
+.demoSlider2Item img {
   animation: sway 1s infinite;
 }
+
 @keyframes sway {
-  50%{
+  50% {
     rotate: -5deg;
   }
 }
@@ -272,6 +303,7 @@ main {
   margin: 150px auto;
   scroll-margin-top: 80px;
 }
+
 /* .section>*:not(.sliderContainer){
     padding: 0 var(--paddindMax5);
   } */
@@ -284,9 +316,12 @@ main {
   margin: 0 20px;
   padding: 0 var(--paddindMax5);
 }
+
 .sectionHeader h2 {
-  font-size: 4rem;
+  font-size: clamp(2rem, -1rem + 8vw, 4rem);
+
 }
+
 .sectionHeader p {
   font-size: 1.6rem;
 }
@@ -337,9 +372,11 @@ main {
 .tabPanel.is-active {
   display: block;
 }
+
 .red {
   color: #ff7b53;
 }
+
 .yellow {
   color: #f0f348;
 }
@@ -350,15 +387,18 @@ main {
   max-width: 1000px;
   margin: 20px auto;
 }
-.howtolead{
+
+.howtolead {
   font-size: 0.9em;
   color: #555;
 }
+
 .howtoList {
   list-style: none;
   padding: 0;
   counter-reset: section;
 }
+
 .howtoStepItem {
   margin: 40px 0 40px;
   padding-bottom: 20px;
@@ -372,15 +412,18 @@ main {
   margin-bottom: 15px;
   font-weight: bold;
 }
+
 .stepBadge {
   display: flex;
   align-items: center;
   gap: 0.3em;
   font-size: 1.3em;
 }
+
 .stepBadge::before {
   content: "Step";
 }
+
 .stepBadge:after {
   display: flex;
   align-items: center;
@@ -395,45 +438,55 @@ main {
   content: counter(section);
   font-size: 1em;
 }
+
 .howtoTitle {
   margin: 0;
   font-size: 1.5em;
   font-weight: bold;
 }
+
 .howtoDescription {
   margin: 0 0 15px 0;
 }
-.howtoCapture{
-  width: 60%;
+
+.howtoCapture {
+  width: max(60%, 300px);
   margin: 20px 0;
 }
-.howtoPatternItem{
+
+.howtoPatternItem {
   border: 10px solid var(--sub-color);
   background-color: #eee;
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 20px;
 }
-.howtoPatternItem h4{
+
+.howtoPatternItem h4 {
   font-size: 1.5em;
   line-height: 1.7;
   border-bottom: 10px solid var(--main-color);
   width: fit-content;
 }
+
 .howtoStepList {
   margin: 0;
   padding: 0 20px;
 }
+
 .howtoStepListItem {
   margin: 20px;
 }
-.howtoStepList h5{
+
+.howtoStepList h5 {
   font-size: 1em;
   line-height: 1.7;
 }
+
 .codeBlockWrapper {
   margin-bottom: 15px;
 }
+
 .codeBlock {
   display: block;
   background: var(--sub-color);
@@ -451,16 +504,19 @@ main {
   min-height: 95vh;
   margin: 0 auto;
 }
+
 .generator .sectionHeader {
   position: static;
   transform: unset;
 }
+
 .generatorWidth {
   width: var(--mainWidth);
   margin: 0 auto;
   border-radius: 25px;
   overflow: hidden;
 }
+
 .generatorInner {
   background: var(--main-color-dark);
   padding: 10px;
@@ -469,17 +525,19 @@ main {
   gap: 2rem;
 }
 
-@media (max-width: 900px) {
-  .generator {
+@media (max-width: 768px) {
+  .generatorInner {
     grid-template-columns: 1fr;
   }
 }
+
 .generator h3 {
   font-size: 2rem;
   margin: 0.5em 0;
   text-align: center;
   color: var(--main-color);
 }
+
 .gen-controls {
   background-color: var(--sub-color);
   color: var(--accent-color);
@@ -487,32 +545,40 @@ main {
   overflow-y: auto;
   max-height: 85vh;
 }
+
 .generator details {
   padding: 0.5em 0 0;
 }
+
 .generator details:not(.generator details:last-child) {
   border-bottom: 4px solid var(--main-color-dark);
 }
+
 .generator summary {
   font-weight: bold;
   cursor: pointer;
   padding: 0.3em 0.9em;
 }
+
 .generator label {
   font-size: 0.7rem;
   padding: 0.7em 2em 0.7em 2.5em;
   font-weight: 700;
   display: block;
 }
+
 .generator label:nth-child(odd) {
   background-color: rgb(85, 65, 0);
 }
+
 .generator label:not(.generator label:last-child) {
   /* border-bottom: 1px solid var(--main-color-dark); */
 }
+
 .generator .group {
   margin-top: 10px;
 }
+
 .generator input,
 .generator textarea,
 .generator select {
@@ -522,11 +588,13 @@ main {
   padding: 0.1em 0.2em;
   font-size: 0.8rem;
 }
+
 .unit-field {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
 }
+
 .generator .checkbox-row {
   display: flex;
   align-items: center;
@@ -534,10 +602,12 @@ main {
   cursor: pointer;
   white-space: nowrap;
 }
+
 .checkbox-row input {
   width: auto;
   margin: 0;
 }
+
 .unit-field input[type="number"] {
   flex-grow: 1;
 }
@@ -545,13 +615,16 @@ main {
 .unit-field input[type="text"] {
   width: 40px;
 }
+
 .generator input:focus,
 .generator textarea:focus {
   outline: none;
   border-color: var(--sub-color);
 }
+
 .preview {
   width: 100%;
+  min-height: 300px;
   background: #fff;
   border: 2px solid var(--main-color-dark);
   border-radius: 12px;
@@ -574,6 +647,7 @@ main {
 .copy-btn:active {
   transform: translateY(1px);
 }
+
 .generatorLead {
   position: absolute;
   top: 0;
@@ -583,6 +657,7 @@ main {
   font-size: 0.9rem;
   font-weight: bold;
 }
+
 .generatorLead .btn {
   font-size: 1rem;
 }
@@ -611,6 +686,7 @@ main {
   color: var(--accent-color);
   text-align: left;
 }
+
 /* background: var(--sub-color);
   color: var(--accent-color);
   
@@ -621,6 +697,7 @@ main {
 .sliderContainer {
   position: relative;
 }
+
 .sliderContainer a:hover {
   color: inherit;
 }
@@ -636,21 +713,26 @@ main {
   pointer-events: none;
   transform-origin: center 150%;
 }
+
 .pointer.isShow {
   animation: swipe 1s both 3 ease-out, fade 0.5s 3s both;
 }
+
 @keyframes swipe {
   0% {
     transform: rotate(-10deg) translateX(-50px);
   }
+
   60% {
     opacity: 1;
   }
+
   100% {
     transform: rotate(20deg) translateX(50px);
     opacity: 0;
   }
 }
+
 @keyframes fade {
   100% {
     opacity: 0;
@@ -666,10 +748,12 @@ main {
     scrollbar-color: #888 #f0f0f0;
   }
 }
+
 /* Chrome / Edge / Safari */
 .scrollWrap::-webkit-scrollbar {
   width: 8px;
 }
+
 .scrollWrap.scrollWrapRow::-webkit-scrollbar {
   height: 8px;
 }
