@@ -14,7 +14,6 @@ https://molydebnum.github.io/orbit-slider/
 - Auto play (`linear` or `step` mode)
 - Loop support
 - Responsive options
-- No dependencies
 - Lightweight and customizable
 
 ---
