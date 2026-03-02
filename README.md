@@ -36,22 +36,30 @@ https://molydebnum.github.io/orbit-slider/
 ## 🚀 Basic Usage
 
 ```html
-<div class="slider">
-  <svg class="orbit-path" viewBox="0 0 1000 400">
-    <path d="M0,200 Q500,0 1000,200" />
+<div class="orbitSlider">
+  <svg class="orbitRoad">
+    <path class="orbitPath" d="..." />
   </svg>
-
-  <div class="orbit-item">1</div>
-  <div class="orbit-item">2</div>
-  <div class="orbit-item">3</div>
+  
+  <div class="orbit">ITEM 1</div>
+  <div class="orbit">ITEM 2</div>
+  <div class="orbit">ITEM 3</div>
 </div>
 ```
 
 ```js
-createOrbitSlider(".slider", {
+createOrbitSlider(".orbitSlider", {
   visibleCount: 3,
   autoPlay: true,
   autoMode: "linear"
+});
+document.querySelectorAll(".orbitSlider").forEach((slider) => {
+  createorbitSlider(slider, {
+    sliderHeight: "500px",    // 全体の高さ
+    visibleCount: 4,          // 画面内の表示数
+    autoSpeed: 30,            // 流れる速度
+    direction: "right"        // 進行方向
+  });
 });
 ```
 
