@@ -3,11 +3,10 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta
-      name="description"
-      content="Orbit Sliderは、GSAPとSVGモーションパスを使った高機能スライダープラグインです。円形・曲線・カスタムパスに沿ったアニメーションカルーセルを簡単に実装できます。SVG slider / motion path slider対応。"
-  />
+  <meta name="description"
+    content="Orbit Sliderは、GSAPとSVGモーションパスを使った高機能スライダープラグインです。円形・曲線・カスタムパスに沿ったアニメーションカルーセルを簡単に実装できます。SVG slider / motion path slider対応。" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="P1jDTVUgxC8wfOZoPZoYTmshcQN5Ce5LAHC_-h4NZwY" />
   <title>ORBIT SLIDER|直線じゃない、自由な形のスライダー</title>
   <link rel="icon" href="./favicon.png">
   <link rel="stylesheet" href="./assets/css/resset.css" />
@@ -424,14 +423,23 @@ document.querySelectorAll("<span class="red">.demoSlider2</span>").forEach((slid
                   <li class="howtoStepListItem">
                     <h5>1. HTML構造を作成する</h5>
                     <p class="howtoDescription">
-                      クラス名を合わせて作成してください。SVGの
-                      <code>viewBox</code> や
-                      <code>d</code> 属性は作成したものに差し替えます。
+                      svgタグとpathタグ、アイテムのクラス名を合わせて作成してください。<br>
+                    <section>
+                      <h6>必須クラス</h6>
+                      <ul>
+                        <li>アイテムを添わせる道の親（svgタグ）：<span class="red">orbitSlider</span></li>
+                        <li>アイテムを添わせる道（pathタグ）：<span class="red">orbitPath</span></li>
+                        <li>アイテム（タグ自由）：<span class="red">orbit</span></li>
+                      </ul>
+                    </section>
+                    <br>SVGの
+                    <code>viewBox</code> やpathの
+                    <code>d</code> 属性は作成したものに差し替えます。
                     </p>
                     <div class="codeBlockWrapper">
                       <pre><code class="codeBlock">
 &lt;div class="orbitSlider"&gt;
-  &lt;svg class="orbitRoad"&gt;
+  &lt;svg class="orbitRoad" viewBox="0 0 2669 933" xmlns="http://www.w3.org/2000/svg"&gt;
     &lt;path class="orbitPath" d="..." /&gt;
   &lt;/svg&gt;
   
@@ -440,6 +448,7 @@ document.querySelectorAll("<span class="red">.demoSlider2</span>").forEach((slid
   &lt;div class="orbit"&gt;ITEM 3&lt;/div&gt;
 &lt;/div&gt;</code></pre>
                     </div>
+                    <p class="howtoDescription">※アイテムを添わせたいパスはSVGタグ内の一番上に置いてください。
                   </li>
                   <li class="howtoStepListItem">
                     <h5>2. JavaScriptで実行する（最小構成）</h5>
@@ -475,6 +484,66 @@ document.querySelectorAll(".orbitSlider").forEach((slider) => {
               </li>
             </ul>
           </li>
+          <li class="howtoStepItem">
+            <div class="howtoHeader">
+              <span class="stepBadge"></span>
+              <h3 class="howtoTitle">
+                レスポンシブ設定
+              </h3>
+            </div>
+            <p class="howtoDescription">
+              responsive オプションを使うことで、画面幅に合わせてスライダーの高さやアイテムのサイズを自動で最適化できます
+            </p>
+            <div class="codeBlockWrapper">
+              <pre><code class="codeBlock">
+document.querySelectorAll(".orbitSlider").forEach((slider) => {
+  createorbitSlider(slider, {
+  // ...基本設定（STEP 2を参照）<span class="yellow">
+    responsive: {</span>
+      // 768px以下の時の設定
+      <span class="yellow"><span class="red">768</span>: {
+        sliderHeight: "65vw",
+        orbitItemWidth: "35%",
+        //...全てのオプションがいれられます
+      },</span>
+      // 480px以下の時の設定
+      <span class="yellow"><span class="red">480</span>: {
+        sliderHeight: "80vw",
+        orbitItemWidth: "45%",
+        //...全てのオプションがいれられます
+      }
+    }</span>
+  })
+});</code></pre>
+            </div>
+            <ul>
+              <li>ブレイクポイント: 赤文字の箇所に書いた数字が「画面の横幅（px）」を表しています。画面がその数字よりも小さくなった時に、{}の中の設定が適用されます。</li>
+              <li>自由な設定: 設定したい画面幅の数だけ、項目を増やすことができます。</li>
+              <li>自動調整: 画面のサイズを変えるたびにプラグインが自動で計算し直すので、スマホの縦横切り替えにも対応しています。</li>
+            </ul>
+          </li>
+          <li class="howtoStepItem error">
+            <div class="howtoHeader">
+              <h3 class="howtoTitle">
+                🚨うまく表示・動作しない時は？🚨
+              </h3>
+            </div>
+            <ul>
+              <li>
+                <h6>SVGタグの属性を確認</h6>
+                <p class="howtoDescription">
+                  自作のSVGを使うときは、svgタグの属性として 【xmlns="http://www.w3.org/2000/svg"】
+                  が書かれているか確認してください。これがないと、JavaScriptから正しく認識されません。
+                  もし書かれていない場合は足してみてください。
+                </p>
+              </li>
+              <li>
+                <h6>パスの形状</h6>
+                <p class="howtoDescription">
+                  本プラグインは、始点から終点へ移動する 「オープンパス」専用 です。円や多角形などの閉じられたパス（クローズドパス）では正しく動作しない場合があるため、必ず線が閉じられていないパスを使用してください。
+                </p>
+              </li>
+            </ul>
         </ol>
       </div>
     </section>
@@ -884,5 +953,3 @@ document.querySelectorAll(".orbitSlider").forEach((slider) => {
 </body>
 
 </html>
-
-

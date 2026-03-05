@@ -487,6 +487,26 @@ main {
   font-size: 1em;
   line-height: 1.7;
 }
+.howtoStepItem section{
+  font-size: 0.8em;
+  background: #fff;
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 15px;
+}
+.error h6 {
+  font-size: 1em;
+  line-height: 1.7;
+}
+.error ul{
+  list-style: square;
+  padding-left: 2em;
+}
+.howtoStepItem section h6 {
+  color: var(--main-color-dark);
+  font-size: 0.9em;
+  line-height: 1.7;
+}
 
 .codeBlockWrapper {
   margin-bottom: 15px;
