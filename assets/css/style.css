@@ -246,12 +246,13 @@ main {
   color: var(--accent-color);
   -webkit-text-stroke: 0.25vw #000;
 }
+
 @media (max-width:700px) {
   .heroSliderNumber {
     font-size: 18vw;
     -webkit-text-stroke: 0.5vw #000;
   }
-  
+
 }
 
 .heroSliderItem:hover .itemInner {
@@ -285,7 +286,11 @@ main {
 }
 
 .demoSlider1Item img {
+  transform-origin: 50% 0%;
   width: 100%;
+}
+.demoSlider1Item:hover img{
+  animation: yura 0.5s infinite;
 }
 
 /* デモスライダー2 */
@@ -303,6 +308,7 @@ main {
   margin: 150px auto;
   scroll-margin-top: 80px;
 }
+
 .sectionInner {
   width: var(--mainWidth);
   max-width: 1000px;
@@ -318,8 +324,7 @@ main {
   /* transform: translateY(-100%); */
   /* z-index: 100; */
   width: fit-content;
-  margin: 0 20px;
-  padding: 0 var(--paddindMax5);
+  margin: 0 auto 20px;
 }
 
 .sectionHeader h2 {
@@ -487,21 +492,25 @@ main {
   font-size: 1em;
   line-height: 1.7;
 }
-.howtoStepItem section{
+
+.howtoStepItem section {
   font-size: 0.8em;
   background: #fff;
-    width: fit-content;
-    padding: 10px 20px;
-    border-radius: 15px;
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 15px;
 }
+
 .error h6 {
   font-size: 1em;
   line-height: 1.7;
 }
-.error ul{
+
+.error ul {
   list-style: square;
   padding-left: 2em;
 }
+
 .howtoStepItem section h6 {
   color: var(--main-color-dark);
   font-size: 0.9em;
@@ -682,6 +691,7 @@ main {
   font-size: 0.9rem;
   font-weight: bold;
 }
+
 @media (max-width: 768px) {
   .generatorLead {
     display: none;
@@ -722,6 +732,23 @@ main {
   
   .optionsTable td:first-child {
   } */
+
+
+
+/* ディスクリプション */
+
+.descriptionContainer {
+  width: var(--mainWidth);
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.descriptionContainer ul {
+  list-style-type: disc;
+  margin: 20px;
+}
+
 
 /* スライダー共通 */
 .sliderContainer {
@@ -798,12 +825,12 @@ main {
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
 }
 
-@media(max-width:768px){
-  .howtoStepList{
-    padding:0;    
+@media(max-width:768px) {
+  .howtoStepList {
+    padding: 0;
   }
-  .howtoStepListItem{
-    margin:20px 0;
+
+  .howtoStepListItem {
+    margin: 20px 0;
   }
 }
-  
