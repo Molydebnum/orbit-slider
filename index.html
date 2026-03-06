@@ -220,8 +220,92 @@
           </div>
 
           <div class="tabPanels">
-            <pre class="tabPanel" data-panel="html"><code>&lt;!-- HTML here --&gt;</code></pre>
-            <pre class="tabPanel" data-panel="css"><code>/* CSS here */</code></pre>
+            <pre class="tabPanel" data-panel="html"><code>&lt;div class="demoSlider1 LilitaOne"&gt;
+  &lt;svg id="orbitRoad" viewBox="0 0 1440 322" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+    &lt;path class="orbitPath demoSlider1Path"
+      d="M-245 47.2055C-66.4579 49.494 828.682 -69.1551 906.271 63.225C954.5 145.511 693.221 131.88 469.168 157.054C248.246 181.876 226 321.5 654.712 321.5C985.34 321.5 1742.97 290.551 1876 282.922"
+      stroke="black" /&gt;
+  &lt;/svg&gt;
+
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="orbit"&gt;
+      &lt;img src="画像パス" alt="" /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<pre class="tabPanel" data-panel="css"><code>.orbit {
+  stroke-width: 3;
+}
+
+.orbit img {
+  transform-origin: 50% 0%;
+  width: 100%;
+}
+
+.orbit:hover img {
+  animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+  50% {
+    rotate: 2deg;
+  }
+}</code></pre>
             <pre class="tabPanel is-active" data-panel="js"><code>
 document.querySelectorAll("<span class="red">.orbitSlider</span>").forEach(slider => {
     createorbitSlider(slider, {
@@ -907,6 +991,28 @@ document.querySelectorAll(".orbitSlider").forEach((slider) => {
             </tr>
           </tbody>
         </table>
+      </div>
+    </section>
+    <section class="description section" id="options">
+      <div class="sectionHeader LilitaOne">
+        <h2 class="sectionTitle">ORBIT SLIDERとは？</h2>
+      </div>
+      <div class="descriptionContainer">
+        <p>
+          ちょっと変わったUIをサイトにいれたい方へ<br>
+          ORBIT SLIDER（オービットスライダー）は、GSAPをベースに開発された、<strong>「自由な曲線」の上を要素が動く</strong>、一風変わったJavaScriptスライダープラグインです。
+        </p>
+
+        <p>
+          このプラグインを使えば、<strong>うねうね</strong>とした曲線やアーチ型、有機的なカーブのレイアウトなど、他にはない<strong>個性的</strong>な動きを、SVGパスに沿わせて簡単に実装できます。
+        </p>
+
+        <ul>
+          <li><strong>自由自在なレイアウト：</strong>複雑なカーブも、描いた線がそのままスライダーになります。</li>
+          <li><strong>専門知識は不要：</strong>難しい数学の計算は一切なし。ジェネレーターで直感的に調整可能です。</li>
+          <li><strong>実用設計：</strong>レスポンシブ、ドラッグ操作も標準装備。</li>
+        </ul>
+
       </div>
     </section>
   </main>
