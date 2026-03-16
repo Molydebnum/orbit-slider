@@ -46,6 +46,13 @@ https://molydebnum.github.io/orbit-slider/
   <div class="orbit">ITEM 3</div>
 </div>
 ```
+### Required Classes
+| Class | Tag | Description |
+|---|---|---|
+| `orbitSlider` | any | Container (customizable class name — must match the JS config) |
+| `orbitRoad` | `svg` | SVG wrapper for the orbit path |
+| `orbitPath` | `path` | The path that items follow |
+| `orbit` | any | Item that moves along the path |
 
 ```js
 createOrbitSlider(".orbitSlider", {
