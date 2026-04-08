@@ -270,9 +270,28 @@ main {
 }
 
 /* デモ */
-.demoItem {
+#sectionDemo{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  #sectionDemo{
+    flex-direction: column;
+    align-items: center;
+  }
+}
+#sectionDemo>div{
   width: var(--demoWidth);
-  margin: 0 auto 100px;
+  
+}
+#sectionDemo>aside{
+  position: sticky;
+  top: 50px;
+}
+.demoItem {
+  margin: 0 0 100px;
 }
 
 /* デモスライダー1 */
@@ -833,4 +852,38 @@ main {
   .howtoStepListItem {
     margin: 20px 0;
   }
+}
+
+
+
+/* 広告 */
+.pc{
+  display: block;
+}
+.sp{
+  display: none;
+}
+@media(max-width:768px){
+  .pc{
+    display: none;
+  }
+  .sp{
+    display: block;
+  }
+}
+.rakuten{
+  width: var(--mainWidth);
+  margin: 0 auto;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-radius: 20px;
+  background-color: #ffffff;
+}
+.koukoku a{
+  display: block;
+  margin: 0 auto 50px;
+  width: fit-content;
 }
