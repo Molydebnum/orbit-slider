@@ -5,7 +5,7 @@ let header = document.querySelector(".mainHeader");
 const observe = new IntersectionObserver(
   (entries) => {
     entries.forEach((el) => {
-        header.classList.toggle("hide",el.isIntersecting);
+      header.classList.toggle("hide", el.isIntersecting);
     });
   },
   {
@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (key === "alignOriginX") opts.alignOrigin.x = parseFloat(el.value);
       else if (key === "alignOriginY") opts.alignOrigin.y = parseFloat(el.value);
       else if (key === "responsive") {
-        try { opts[key] = JSON.parse(el.value || "{}"); } catch(e) { opts[key] = null; }
+        try { opts[key] = JSON.parse(el.value || "{}"); } catch (e) { opts[key] = null; }
       } else {
-        opts[key] = el.type === "checkbox" ? el.checked : 
-                    el.type === "number" ? parseFloat(el.value) : el.value;
+        opts[key] = el.type === "checkbox" ? el.checked :
+          el.type === "number" ? parseFloat(el.value) : el.value;
       }
     });
     // キー名の変換 (datasetの命名と関数の引数名のズレを補正)
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. SVG全体の構造を作成
     const viewBox = svgElement.getAttribute("viewBox") || "0 0 1000 500";
-    
+
     // プレビュー枠を空にする
     previewFrame.innerHTML = "";
 
@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < 10; i++) {
       const item = document.createElement("div");
       item.className = "orbit";
-      item.style.cssText = "background:orange; height:100px; display:flex; align-items:center; justify-content:center; border-radius:10px;";
-      item.textContent = `ITEM ${i+1}`;
+      item.style.cssText = "background:orange; aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-radius:10px;";
+      item.textContent = `ITEM ${i + 1}`;
       previewFrame.appendChild(item);
     }
 
@@ -93,13 +93,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const options = getOptions();
     createorbitSlider(previewFrame, options);
 
+
+
     // コード表示も更新
     updateCodeDisplay(rawSvg, options);
   }
 
+
+  // タブ切り替え
+  document.querySelectorAll('.svg-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.svg-tab-btn').forEach(b => b.classList.remove('is-active'));
+      document.querySelectorAll('.svg-tab-panel').forEach(p => p.classList.add('is-hidden'));
+      btn.classList.add('is-active');
+      document.querySelector(`[data-svg-panel="${btn.dataset.svgTab}"]`).classList.remove('is-hidden');
+    });
+  });
+
+  // サンプルSVGデータ
+  const sampleSVGs = {
+    wave: `<svg viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg"><path d="M0 250 Q360 10 720 250 Q1080 490 1440 250" stroke="black" fill="none"/></svg>`,
+    arch: `<svg viewBox="0 0 1440 300" xmlns="http://www.w3.org/2000/svg"><path d="M0 280 Q720 20 1440 280" stroke="black" fill="none"/></svg>`,
+    "s-curve": `<svg viewBox="0 0 1440 300" xmlns="http://www.w3.org/2000/svg"><path d="M0 50 C360 50 360 250 720 250 C1080 250 1080 50 1440 50" stroke="black" fill="none"/></svg>`,
+    "zig-zag": `<svg viewBox="0 0 1440 300" xmlns="http://www.w3.org/2000/svg"><path d="M0 250 L230 60 Q240 50 250 60 L470 250 Q480 260 490 250 L710 50 Q720 40 730 50 L950 250 Q960 260 970 250 L1190 50 Q1200 40 1210 50 L1440 250" stroke="black" fill="none"/></svg>`,
+  };
+
+  // サンプル選択
+  document.querySelectorAll('.sample-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sample-btn').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      svgInput.value = sampleSVGs[btn.dataset.sample];
+      svgInput.dispatchEvent(new Event('input'));
+    });
+  });
+
   // 入力変更時にリスタート
   svgInput.addEventListener("input", updatePreview);
-  
+
   // コントロール変更時にリスタート（タイマーで負荷軽減）
   let timer;
   controls.forEach(el => el.addEventListener("input", () => {
@@ -109,90 +140,90 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function updateCodeDisplay(rawSvg, options) {
-    // 1. プラグインの引数と完全に一致させたデフォルト値
-    const DEFAULT_OPTIONS = {
-      sliderHeight: "400px",
-      orbitItemWidth: "200px",
-      visibleCount: 3,
-      zIndexMode: "front",
-      alignOrigin: { x: 0.5, y: 0.5 },
-      pathTop: "0px",
-      overflowBuffer: 10,
-      pathWidth: null,
-      pathFront: false,
-      pathDirection: "normal",
-      direction: "left",
-      autoRotate: true,
-      autoPlay: true,
-      autoMode: "linear",
-      autoSpeed: 50,
-      stepCount: 1,
-      stepDuration: 0.6,
-      stepDelay: 1.2,
-      loop: true,
-      pauseOnHover: false,
-      draggable: true,
-      dragSpeed: 0.0015,
-      responsive: null
-    };
-  
-    // 2. 差分抽出（中間生成キーを除外）
-    const filteredOptions = {};
-    const tempKeys = [
-      "sliderHeightValue", "sliderHeightUnit",
-      "orbitItemWidthValue", "orbitItemWidthUnit",
-      "pathTopValue", "pathTopUnit",
-      "itemCount" // オプションにないキーは除外
-    ];
-  
-    for (const key in options) {
-      if (tempKeys.includes(key)) continue;
-    
-      const val = options[key];
-      const def = DEFAULT_OPTIONS[key];
-    
-      if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
-        const hasContent = Object.keys(val).length > 0;
-        if (key === "responsive") {
-          if (hasContent && JSON.stringify(val) !== JSON.stringify(def)) {
-            filteredOptions[key] = val;
-          }
-        } else {
-          if (JSON.stringify(val) !== JSON.stringify(def)) {
-            filteredOptions[key] = val;
-          }
+  // 1. プラグインの引数と完全に一致させたデフォルト値
+  const DEFAULT_OPTIONS = {
+    sliderHeight: "400px",
+    orbitItemWidth: "150px",
+    visibleCount: 3,
+    zIndexMode: "front",
+    alignOrigin: { x: 0.5, y: 0.5 },
+    pathTop: "0px",
+    overflowBuffer: 15,
+    pathWidth: null,
+    pathFront: false,
+    pathDirection: "normal",
+    direction: "left",
+    autoRotate: true,
+    autoPlay: true,
+    autoMode: "linear",
+    autoSpeed: 50,
+    stepCount: 1,
+    stepDuration: 0.6,
+    stepDelay: 1.2,
+    loop: true,
+    pauseOnHover: false,
+    draggable: true,
+    dragSpeed: 0.0015,
+    responsive: null
+  };
+
+  // 2. 差分抽出（中間生成キーを除外）
+  const filteredOptions = {};
+  const tempKeys = [
+    "sliderHeightValue", "sliderHeightUnit",
+    "orbitItemWidthValue", "orbitItemWidthUnit",
+    "pathTopValue", "pathTopUnit",
+    "itemCount" // オプションにないキーは除外
+  ];
+
+  for (const key in options) {
+    if (tempKeys.includes(key)) continue;
+
+    const val = options[key];
+    const def = DEFAULT_OPTIONS[key];
+
+    if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
+      const hasContent = Object.keys(val).length > 0;
+      if (key === "responsive") {
+        if (hasContent && JSON.stringify(val) !== JSON.stringify(def)) {
+          filteredOptions[key] = val;
         }
-      } 
-      else if (val !== def) {
-        filteredOptions[key] = val;
+      } else {
+        if (JSON.stringify(val) !== JSON.stringify(def)) {
+          filteredOptions[key] = val;
+        }
       }
     }
-  
-    // 3. HTMLコード生成（固定 1〜3 + コメント）
-    const htmlCode = `<div class="orbitSlider">
+    else if (val !== def) {
+      filteredOptions[key] = val;
+    }
+  }
+
+  // 3. HTMLコード生成（固定 1〜3 + コメント）
+  const htmlCode = `<div class="orbitSlider">
     ${rawSvg.replace('<svg', '<svg class="orbitRoad"').replace('<path', '<path class="orbitPath"')}
   <div class="orbit">ITEM 1</div>
   <div class="orbit">ITEM 2</div>
   <div class="orbit">ITEM 3</div>
 </div>`;
-    
-    // 4. CSSコード生成（空のまま）
-    const cssCode = ``;
-  
-    // 5. JSコード生成（オプションの有無で出力を分岐）
-    const hasOptions = Object.keys(filteredOptions).length > 0;
-    const jsArgs = hasOptions ? `, ${JSON.stringify(filteredOptions, null, 2)}` : "";
-  
-    const jsCode = `// GSAPとMotionPathPluginが必要です
+
+  // 4. CSSコード生成（空のまま）
+  const cssCode = ``;
+
+  // 5. JSコード生成（オプションの有無で出力を分岐）
+  const hasOptions = Object.keys(filteredOptions).length > 0;
+  const jsArgs = hasOptions ? `, ${JSON.stringify(filteredOptions, null, 2)}` : "";
+
+  const jsCode = `// GSAPとMotionPathPluginが必要です
   document.querySelectorAll(".orbitSlider").forEach((slider) => {
     createorbitSlider(slider${jsArgs});
   });`;
-  
-    // 各パネルへ反映
-    document.querySelector('.generator [data-panel="html"] code').textContent = htmlCode;
-    document.querySelector('.generator [data-panel="css"] code').textContent = cssCode;
-    document.querySelector('.generator [data-panel="js"] code').textContent = jsCode;
-  }
+
+  // 各パネルへ反映
+  document.querySelector('.generator [data-panel="html"] code').textContent = htmlCode;
+  document.querySelector('.generator [data-panel="css"] code').textContent = cssCode;
+  document.querySelector('.generator [data-panel="js"] code').textContent = jsCode;
+}
 
 // グレーアウトを制御する関数
 function updateControlVisibility() {
@@ -214,7 +245,7 @@ function updateControlVisibility() {
     items.forEach(input => {
       if (!input) return;
       input.disabled = !isEnabled;
-      
+
       // 親のlabelごと見た目を変える
       const label = input.closest('label');
       if (label) {
@@ -246,7 +277,7 @@ function setupCopyButtons() {
     btn.textContent = "Copy";
     btn.className = "copy-btn";
     btn.style.cssText = "position:absolute; top:10px; right:10px; z-index:10; padding:5px 10px; cursor:pointer;";
-    
+
     // 親要素を相対位置にする（ボタンの配置基準）
     panel.style.position = "relative";
     panel.appendChild(btn);
