@@ -205,7 +205,7 @@ function updateCodeDisplay(rawSvg, options) {
   <div class="orbit">ITEM 1</div>
   <div class="orbit">ITEM 2</div>
   <div class="orbit">ITEM 3</div>
-  // 必要な分だけアイテムを追加（class="orbit"がついていればタグの種類はなんでもOK）
+   <!-- 必要な分だけアイテムを追加（class="orbit"がついていればタグの種類はなんでもOK） -->
 </div>`;
 
   // 4. CSSコード生成（空のまま）
