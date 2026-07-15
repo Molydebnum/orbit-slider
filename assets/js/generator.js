@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const previewFrame = document.getElementById("previewFrame");
   const controls = document.querySelectorAll(".gen-controls input, .gen-controls select, .gen-controls textarea");
 
-  // 設定値を取得する関数（あなたの関数の引数形式に合わせる）
+  // 設定値を取得
   function getOptions() {
     const opts = {
       alignOrigin: { x: 0.5, y: 0.5 } // デフォルト値
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
           el.type === "number" ? parseFloat(el.value) : el.value;
       }
     });
-    // キー名の変換 (datasetの命名と関数の引数名のズレを補正)
+    // キー名の変換 
     opts.sliderHeight = opts.sliderHeightValue + (opts.sliderHeightUnit || "px");
     opts.orbitItemWidth = opts.orbitItemWidthValue + (opts.orbitItemWidthUnit || "px");
     opts.pathTop = opts.pathTopValue + (opts.pathTopUnit || "px");
@@ -61,14 +61,14 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 1. パスを複製してクラスを追加（元の属性を保持）
+    // 1. パス複製クラスを追加
     const pathClone = originalPath.cloneNode(true);
     pathClone.classList.add("orbitPath");
 
-    // 2. SVG全体の構造を作成
+    // 2. SVG全体構造作成
     const viewBox = svgElement.getAttribute("viewBox") || "0 0 1000 500";
 
-    // プレビュー枠を空にする
+    // プレビュー枠空に
     previewFrame.innerHTML = "";
 
     // 3. 新しいSVGコンテナを作成
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     newSvg.setAttribute("class", "orbitRoad");
     newSvg.setAttribute("viewBox", viewBox);
     newSvg.setAttribute("fill", "none");
-    newSvg.appendChild(pathClone); // デザインを保持したパスを追加
+    newSvg.appendChild(pathClone);
 
     previewFrame.appendChild(newSvg);
 
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // コード表示も更新
+    // コード表示更新
     updateCodeDisplay(rawSvg, options);
   }
 
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function updateCodeDisplay(rawSvg, options) {
-  // 1. プラグインの引数と完全に一致させたデフォルト値
+  // 1. デフォルト値
   const DEFAULT_OPTIONS = {
     sliderHeight: "400px",
     orbitItemWidth: "150px",
@@ -199,7 +199,7 @@ function updateCodeDisplay(rawSvg, options) {
     }
   }
 
-  // 3. HTMLコード生成（固定 1〜3 + コメント）
+  // 3. HTMLコード生成
   const htmlCode = `<div class="orbitSlider">
     ${rawSvg.replace('<svg', '<svg class="orbitRoad"').replace('<path', '<path class="orbitPath"')}
   <div class="orbit">ITEM 1</div>
@@ -208,10 +208,10 @@ function updateCodeDisplay(rawSvg, options) {
    <!-- 必要な分だけアイテムを追加（class="orbit"がついていればタグの種類はなんでもOK） -->
 </div>`;
 
-  // 4. CSSコード生成（空のまま）
+  // 4. CSSコード生成
   const cssCode = ``;
 
-  // 5. JSコード生成（オプションの有無で出力を分岐）
+  // 5. JSコード生成
   const hasOptions = Object.keys(filteredOptions).length > 0;
   const jsArgs = hasOptions ? `, ${JSON.stringify(filteredOptions, null, 2)}` : "";
 
@@ -226,12 +226,12 @@ function updateCodeDisplay(rawSvg, options) {
   document.querySelector('.generator [data-panel="js"] code').textContent = jsCode;
 }
 
-// グレーアウトを制御する関数
+// グレーアウト制御
 function updateControlVisibility() {
   const autoModeSelect = document.querySelector('[data-opt="autoMode"]');
   const mode = autoModeSelect.value;
 
-  // 1. 各グループの要素を取得
+  // 1. 各グループ要素取得
   const linearItems = [
     document.querySelector('[data-opt="autoSpeed"]')
   ];
@@ -241,13 +241,13 @@ function updateControlVisibility() {
     document.querySelector('[data-opt="stepDelay"]')
   ];
 
-  // 2. 状態に合わせて切り替え関数
+  // 2. 状態に合わせて切り替え
   const toggleGroup = (items, isEnabled) => {
     items.forEach(input => {
       if (!input) return;
       input.disabled = !isEnabled;
 
-      // 親のlabelごと見た目を変える
+      // labelごと見た目を変える
       const label = input.closest('label');
       if (label) {
         label.style.opacity = isEnabled ? "1" : "0.4";
@@ -268,12 +268,12 @@ updateControlVisibility();
 
 
 
-// コピー機能の登録
+// コピー機能
 function setupCopyButtons() {
   const panels = document.querySelectorAll('.generator [data-panel]');
 
   panels.forEach(panel => {
-    // ボタンを作成して追加
+    // ボタン作成追加
     const btn = document.createElement('button');
     btn.textContent = "Copy";
     btn.className = "copy-btn";
