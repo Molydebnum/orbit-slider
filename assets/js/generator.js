@@ -48,56 +48,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // プレビューの更新
   function updatePreview() {
-    const rawSvg = svgInput.value.trim();
-    if (!rawSvg) return;
+  const rawSvg = svgInput.value.trim();
+  if (!rawSvg) return;
 
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(rawSvg, "image/svg+xml");
-    const originalPath = doc.querySelector("path");
-    const svgElement = doc.querySelector("svg");
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(rawSvg, "image/svg+xml");
+  const originalPath = doc.querySelector("path");
+  const svgElement = doc.querySelector("svg");
 
-    if (!originalPath) {
-      previewFrame.innerHTML = "<p style='color:red;'>有効なPathが見つかりません</p>";
-      return;
-    }
-
-    // 1. パス複製クラスを追加
-    const pathClone = originalPath.cloneNode(true);
-    pathClone.classList.add("orbitPath");
-
-    // 2. SVG全体構造作成
-    const viewBox = svgElement.getAttribute("viewBox") || "0 0 1000 500";
-
-    // プレビュー枠空に
-    previewFrame.innerHTML = "";
-
-    // 3. 新しいSVGコンテナを作成
-    const newSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    newSvg.setAttribute("class", "orbitRoad");
-    newSvg.setAttribute("viewBox", viewBox);
-    newSvg.setAttribute("fill", "none");
-    newSvg.appendChild(pathClone);
-
-    previewFrame.appendChild(newSvg);
-
-    // 4. アイテム（.orbit）を追加
-    for (let i = 0; i < 10; i++) {
-      const item = document.createElement("div");
-      item.className = "orbit";
-      item.style.cssText = "background:orange; aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-radius:10px;";
-      item.textContent = `ITEM ${i + 1}`;
-      previewFrame.appendChild(item);
-    }
-
-    // 5. スライダー実行
-    const options = getOptions();
-    createorbitSlider(previewFrame, options);
-
-
-
-    // コード表示更新
-    updateCodeDisplay(rawSvg, options);
+  if (!originalPath || !svgElement) {
+    previewFrame.innerHTML = "<p style='color:red;'>有効なPathが見つかりません</p>";
+    return;
   }
+
+  // 1. SVG全体をクローン（背景や装飾もそのまま保持）
+  const newSvg = svgElement.cloneNode(true);
+  newSvg.classList.add("orbitRoad");
+
+  // 2. 元ドキュメント内でのoriginalPathの位置を特定し、
+  //    クローン側の同じ位置のpathにorbitPathクラスを付与
+  const allOriginalPaths = Array.from(doc.querySelectorAll("path"));
+  const pathIndex = allOriginalPaths.indexOf(originalPath);
+  const clonedPaths = newSvg.querySelectorAll("path");
+  const targetPath = clonedPaths[pathIndex] || clonedPaths[0];
+  if (targetPath) targetPath.classList.add("orbitPath");
+
+  // プレビュー枠を空に
+  previewFrame.innerHTML = "";
+  previewFrame.appendChild(newSvg);
+
+  // 3. アイテム（.orbit）を追加
+  for (let i = 0; i < 10; i++) {
+    const item = document.createElement("div");
+    item.className = "orbit";
+    item.style.cssText = "background:orange; aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-radius:10px;";
+    item.textContent = `ITEM ${i + 1}`;
+    previewFrame.appendChild(item);
+  }
+
+  // 4. スライダー実行
+  const options = getOptions();
+  createorbitSlider(previewFrame, options);
+
+  // コード表示更新
+  updateCodeDisplay(rawSvg, options);
+}
 
 
   // タブ切り替え
