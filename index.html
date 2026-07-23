@@ -517,26 +517,32 @@ document.querySelectorAll("<span class="red">.demoSlider2</span>").forEach((slid
               </li>
               <li class="howtoPatternItem">
                 <h4>パターン2：手動でコードを書く</h4>
-                <p class="howtoDescription">
-                  自由なタイミングで初期化したい場合や、動的に要素を制御したい場合に適しています。
-                </p>
-                <ol class="howtoStepList">
-                  <li class="howtoStepListItem">
-                    <h5>1. HTML構造を作成する</h5>
-                    <p class="howtoDescription">
-                      svgタグとpathタグ、アイテムのクラス名を合わせて作成してください。<br>
-                    <section>
-                      <h6>必須クラス</h6>
-                      <ul>
-                        <li>アイテムを添わせる道の親（svgタグ）：<span class="red">orbitRoad</span></li>
-                        <li>アイテムを添わせる道（pathタグ）：<span class="red">orbitPath</span></li>
-                        <li>アイテム（タグ自由）：<span class="red">orbit</span></li>
-                      </ul>
-                    </section>
-                    <br>SVGの
-                    <code>viewBox</code> やpathの
-                    <code>d</code> 属性は作成したものに差し替えます。
-                    </p>
+                      <p class="howtoDescription">
+                        svgタグとpathタグ、アイテムのクラス名を合わせて作成してください。
+                      </p>
+                      <section>
+                        <h6>必須クラス</h6>
+                        <ul>
+                          <li>
+                            アイテムを添わせる道の親（svgタグ）：<span
+                              class="red"
+                              >orbitRoad</span
+                            >
+                          </li>
+                          <li>
+                            アイテムを添わせる道（pathタグ）：<span class="red"
+                              >orbitPath</span
+                            >
+                          </li>
+                          <li>
+                            アイテム（タグ自由）：<span class="red">orbit</span>
+                          </li>
+                        </ul>
+                      </section>
+                      <p class="howtoDescription">
+                        SVGの <code>viewBox</code> やpathの
+                        <code>d</code> 属性は作成したものに差し替えます。
+                      </p>
                     <div class="codeBlockWrapper">
                       <pre><code class="codeBlock">
 &lt;div class="orbitSlider"&gt;
@@ -720,7 +726,6 @@ document.querySelectorAll(".orbitSlider").forEach((slider) => {
                 </div>
 
               </div>
-            </details>
             </details>
             <details>
               <summary>外観・構造</summary>
