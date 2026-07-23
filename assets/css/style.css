@@ -490,8 +490,11 @@ main {
   padding: 20px;
   margin-bottom: 20px;
 }
-
+.howtoPatternItem summary{
+  cursor: pointer;
+}
 .howtoPatternItem h4 {
+  display: inline-block;
   font-size: 1.5em;
   line-height: 1.7;
   border-bottom: 10px solid var(--main-color);
